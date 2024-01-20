@@ -25,5 +25,5 @@ Redi_10d_Adaptive_ROM: 10-d reaction-diffusion equation
 NS_Adaptive_ROM_GPR: N-S equation
 
 
-The N-S equation is soloved by the following code
+The N-S equation is solved by the following code
 https://github.com/JamieMJohns/Navier-stokes-2D-numerical-solve-incompressible-flow-with-custom-scenarios-MATLAB-
