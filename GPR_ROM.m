@@ -1,6 +1,24 @@
 function [ Mu_t,Var_t,U_r,X_test, ROM_Kriging ] = GPR_ROM(parameter,snapshot,m,threshold)
 
-% Construct ROM based on GPR
+%% Construct ROM based on GPR
+%{
+Created by: Kai Cheng (kai.cheng@tum.de)
+Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
+MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing
+---------------------------------------------------------------------------
+Input:
+* parameter: Training parameter set
+* snapshot : Function for collecting snapshots
+* m        : Training data sequence length
+* threshold: SVD truncation threshold
+---------------------------------------------------------------------------
+Output:
+* Mu_t       : Prediction mean for all sampled parameter value 
+* Var_t      : Prediction variance for all sampled parameter value 
+* U_r        : Global basis
+* X_test     : Test snapshots
+* ROM_Kriging: Trained Kriging model for all sampled parameter value 
+%}
 
 %% training sample set
 

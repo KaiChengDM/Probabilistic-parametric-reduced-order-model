@@ -3,7 +3,7 @@ function [Var, Delta] = Adaptive_GPR_ROM(x_train,x_test,Mu_t,Var_t)
 %% Compute the bias and variance of the pROM
 %{
 Created by: Kai Cheng (kai.cheng@tum.de)
-Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
+Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER1
 MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing
 ---------------------------------------------------------------------------
 Input:
@@ -13,8 +13,10 @@ Input:
 * Var_t  : Variance of time sequence for training parameter set
 ---------------------------------------------------------------------------
 Output:
-* Var    : Prediction variance
-* Delta  : Prediction bias
+* Var     : probability of failure
+* cov    : coefficient of variation of SDIS estimator
+* n_cost : total model evaluations
+* level  : total number of intermediate levels
 %}
 
 %% training sample set

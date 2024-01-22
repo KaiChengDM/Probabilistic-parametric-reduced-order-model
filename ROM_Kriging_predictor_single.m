@@ -1,9 +1,9 @@
-function [X_mean,X_Variance] = ROM_Kriging_predictor_single(Xtest,Kriging_Model,m)
+function [X_mean,X_Var] = ROM_Kriging_predictor_single(Xtest,Kriging_Model,m)
 
-% Prediction of future state with ROM_Kriging
+% Prediction of state with Kriging
  
- output = Kriging_Model{1}.Yr;
- U_r  = Kriging_Model{1}.basis;
+ output   = Kriging_Model{1}.Yr;
+ U_r      = Kriging_Model{1}.basis;
  ub_input = Kriging_Model{1}.ub_input;
 
  X_r_test = U_r'*Xtest;
@@ -17,18 +17,15 @@ function [X_mean,X_Variance] = ROM_Kriging_predictor_single(Xtest,Kriging_Model,
 for j = 1:m
 
      for i = 1: r
-         [Mean(j,i) Variance(j,i)] = Kriging_predictor_single(u_test(j,:),Kriging_Model{i}); % assign same weight for each component of y_r
+         [Mean(j,i), Var(j,i)] = Kriging_predictor_single(u_test(j,:),Kriging_Model{i}); % assign same weight for each component of y_r
      end
 
-%      u_test = Mean(j,:);
-    
      Mean(j,:) = Mean(j,:).*ub_input;
-     Variance(j,:) = Variance(j,:).*ub_input.^2;
+     Var(j,:)  = Var(j,:).*ub_input.^2;
 
 end
 
   X_mean = U_r*Mean'; 
-
-  X_Variance = U_r.^2*Variance';
+  X_Var  = U_r.^2*Var';
 
 end

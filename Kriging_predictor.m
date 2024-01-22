@@ -1,4 +1,4 @@
-function [pred_mu pred_var] = Kriging_predictor(x_pre,model)  
+function [pred_mu, pred_var] = Kriging_predictor(x_pre,model)  
 
 % Kriging model predictor
 

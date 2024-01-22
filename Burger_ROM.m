@@ -4,16 +4,17 @@ clc; clear ;
 %% collect snapshots
 
 Re = 800;  t0 = exp(Re/8);
-g = @(x) (x(:,1)./(x(:,2)+1))./(1 + sqrt((x(:,2)+1)./t0)*exp(Re*x(:,1).^2./(4*x(:,2)+4)));   % Exact solution of Burger equation 
+g  = @(x) (x(:,1)./(x(:,2)+1))./(1 + sqrt((x(:,2)+1)./t0)*exp(Re*x(:,1).^2./(4*x(:,2)+4)));   % Exact solution of Burger equation 
 
 s_int = 2/127;
-s = 0:s_int:2;      % 128 uniform spatial degree
-T = 2; t_int = T/100;
-t = 0:t_int:T;      % 101 time instants
+s     = 0:s_int:2;      % 128 uniform spatial degree
+T     = 2;              % time 
+t_int = T/100;
+t     = 0:t_int:T;      % 101 time instants
 
 for i = 1:length(s)
     for j = 1:length(t)
-         Snapshot(i,j) = g([s(i) t(j)]);  %snapshots
+         Snapshot(i,j) = g([s(i) t(j)]);  % snapshots
     end
 end
 
@@ -32,17 +33,17 @@ threshold = 0.99999;
 mm = size(X_test,2);
 
 for i = 1:m
-   recon_error(i) = norm(Xdmd(:,i+1) - X2(:,i))./norm(X2(:,i));
+   recon_error(i) = norm(Xdmd(:,i+1) - X2(:,i))./norm(X2(:,i));  % reconstruction error
 end
 
 for k = 1:mm
-   time_pred(:,k) = lambda.^(k+m).*b;
+   time_pred(:,k) = lambda.^(k+m).*b;        % predict future states
 end
 
 Xdmd_pred = real(Phi * time_pred);
 
 for i = 1:mm
-     error(i) = norm(Xdmd_pred(:,i) - X_test(:,i))./norm(X_test(:,i));
+     error(i) = norm(Xdmd_pred(:,i) - X_test(:,i))./norm(X_test(:,i)); % prediction error
 end
 
 Error = norm(Xdmd_pred- X_test ,'fro')/norm(X_test ,'fro')
@@ -57,14 +58,14 @@ hyperpar.multistarts   = 5;
 
 % training GPR model
 X_train = [X1 X2(:,end)];
-ROM_Kriging = ROM_Kriging_train_mixed(X_train,threshold,hyperpar); 
+ROM_Kriging = ROM_Kriging_train_mixed(X_train,threshold,hyperpar);  
 
 % Recover training data
 Xtest = X1;
-[recon_Mu,recon_Var] = ROM_Kriging_predictor_mixed(Xtest,ROM_Kriging,m); 
+[recon_Mu,recon_Var] = ROM_Kriging_predictor_mixed(Xtest,ROM_Kriging,m);  
 
 for i = 1:m
-     recon_error1(i) = norm(recon_Mu(:,i) - X2(:,i))./norm(X2(:,i)); 
+    recon_error1(i) = norm(recon_Mu(:,i) - X2(:,i))./norm(X2(:,i)); % reconstruction error
 end
 
 % predict future state 
@@ -92,7 +93,7 @@ ROM_Kriging1  = ROM_Kriging_train_single(X_train,threshold,hyperpar);
 
 % Recover training data
 Xtest = X1;
-[recon_Mu1,recon_Var1] = ROM_Kriging_predictor_single(Xtest,ROM_Kriging1,m); 
+[recon_Mu1,recon_Var1] = ROM_Kriging_predictor_single(Xtest,ROM_Kriging1,m);  % reconstruction error
 
 for i = 1:m
     recon_error2(i) = norm(recon_Mu1(:,i) - X2(:,i))./norm(X2(:,i)); 
@@ -125,7 +126,7 @@ ROM_Kriging2  = POD_Kriging_train(X_train,threshold,hyperpar);
 % Recover training data
 for i = 1:m+1
     [recon_Mu2(:,i),recon_Var2(:,i)] =  POD_Kriging_predictor(i,ROM_Kriging2); 
-    recon_error3(i) = norm(recon_Mu2(:,i) - X_train(:,i))./norm(X_train(:,i)); 
+    recon_error3(i) = norm(recon_Mu2(:,i) - X_train(:,i))./norm(X_train(:,i));  % reconstruction error
 end
 
 recon_error3(1) = [];

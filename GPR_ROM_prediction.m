@@ -1,6 +1,26 @@
 function [Mu_full,Var_full,X_full] = GPR_ROM_prediction(x_test,Snapshots,Mu_t,Var_t,U_r,x_train)
 
-% Interpolation of ROM based on GPR (different hyper-parameter)
+%% Prediction of FOM for an untried parameter 
+%{
+Created by: Kai Cheng (kai.cheng@tum.de)
+Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
+MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing
+---------------------------------------------------------------------------
+Input:
+* Snapshots : Function for collecting snapshots
+* x_test : Testing  parameter set
+* Mu_t   : Mean of time sequence for training parameter set
+* Var_t  : Variance of time sequence for training parameter set
+* U_r    : Global basis
+* x_train: Training parameter set
+---------------------------------------------------------------------------
+Output:
+* Mu_full   : Prediction mean of the full order solution
+* Var_full  : Prediction variance of the full order solution
+* X_full    : True full order solution
+%}
+
+%% Prediction of FOM for an untried parameter 
 
 model = Interpolation_model(x_train,Mu_t,Var_t);
 
@@ -23,13 +43,10 @@ for i = 1: N1
 
          [weight Con_var] = Kriging_weight(x_pre(i,:),model{k});
 
-         % Mu_pred(k,:) = zeros(1,N_t);
-
          Mu_pred(k,:)  = model{k}.mu_y; 
          Var_pred(k,:) =  Con_var.*std_y.^2;
    
          for j = 1:N 
-            % Mu_pred(k,:) = Mu_pred(k,:)  + weight(j)*Mu_t{j}(k,:);
              Mu_pred(k,:)  = Mu_pred(k,:)  + weight(j)*(Mu_t{j}(k,:)- model{k}.mu_y);
              Var_pred(k,:) = Var_pred(k,:) + weight(j)^2*Var_t{j}(k,:);
          end

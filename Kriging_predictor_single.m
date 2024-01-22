@@ -1,4 +1,4 @@
-function [pred_mean pred_variance ] = Kriging_predictor_single(x_pre,model)  
+function [pred_mean, pred_variance ] = Kriging_predictor_single(x_pre,model)  
 
 % Kriging model predictor
 

@@ -2,8 +2,6 @@ function ROM_Kriging = ROM_Kriging_train(X_r,hyperpar)
 
 % Training reduced order model with Kriging --- mixed kernel
 
-% All input share the same kernel parameter
-
 [n,m] = size(X_r);
 
 hyperpar.theta = [1 0.1]; 

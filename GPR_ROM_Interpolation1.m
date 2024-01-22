@@ -1,7 +1,28 @@
 function [MSE,MSE1,Var,Var1,model] = GPR_ROM_Interpolation1(x_test,Snapshots,Mu_t,Var_t,U_r,x_train)
 
-% Interpolation of ROM based on GPR (all latent states share the same hyper-parameter with the first one)
+%% Interpolation of ROM based on GPR (all latent states share the same hyper-parameter with the first one)
+%{
+Created by: Kai Cheng (kai.cheng@tum.de)
+Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
+MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing
+---------------------------------------------------------------------------
+Input:
+* Snapshots : Function for collecting snapshots
+* x_test : Testing  parameter set
+* Mu_t   : Mean of time sequence for training parameter set
+* Var_t  : Variance of time sequence for training parameter set
+* U_r    : Global basis
+* x_train: Training parameter set
+---------------------------------------------------------------------------
+Output:
+* MSE   : Prediction error
+* MSE1  : Prediction error1
+* Var   : Prediction standard deviation
+* Var1  : Prediction standard deviation1
+* model : Interpolation model
+%}
 
+%% Compute the relative error and standard deviation
 
 model = Interpolation_model1(x_train,Mu_t,Var_t);
 

@@ -23,10 +23,6 @@ function [X_mean,X_Variance] = POD_Kriging_predictor(Xtest,Kriging_Model)
 
      Variance(:,i) = Variance(:,i)*std_output(i)^2;
     
-%      Mean(:,i) = Mean(:,i)*(ub_input-lb_input) + lb_input;
-% 
-%      Variance(:,i) = Variance(:,i)*(ub_input-lb_input)^2;
-
  end
 
   X_mean = U_r*Mean';

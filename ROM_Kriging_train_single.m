@@ -1,6 +1,6 @@
 function ROM_Kriging = ROM_Kriging_train_single(X,threshold,hyperpar)
 
-% Training reduced order model with Kriging 
+% Training reduced order model with Kriging with single kernel
 
 [U, S, V] = svd(X, 'econ');
 
@@ -22,11 +22,12 @@ X_r = U_r'*X;  % Input
 
 n = r;  m = size(X_r,2);
 
-u_input= X_r(:,1:m-1)';    u_output = X_r(:,2:m)';
+u_input  = X_r(:,1:m-1)';   
+u_output = X_r(:,2:m)';
 
 N = length(u_input); 
 
-ub_input  = max(abs(u_input));
+ub_input = max(abs(u_input));
 
 u_input  = u_input./repmat(ub_input,N,1);
 u_output = u_output./repmat(ub_input,N,1);
@@ -56,6 +57,5 @@ end
 
  ROM_Kriging{1}.basis = U_r; 
  ROM_Kriging{1}.ub_input   = ub_input;
-
 
 end

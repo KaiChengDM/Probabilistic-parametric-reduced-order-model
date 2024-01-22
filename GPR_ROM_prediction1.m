@@ -1,6 +1,26 @@
 function [Mu_full,Var_full,X_full] = GPR_ROM_prediction1(x_test,Snapshots,Mu_t,Var_t,U_r,x_train)
 
-% Interpolation of ROM based on GPR (all latent states share the same hyper-parameter with the first one)
+%% Interpolation of ROM based on GPR (all latent states share the same hyper-parameter with the first one)
+%{
+Created by: Kai Cheng (kai.cheng@tum.de)
+Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
+MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing
+---------------------------------------------------------------------------
+Input:
+* Snapshots : Function for collecting snapshots
+* x_test : Testing  parameter set
+* Mu_t   : Mean of time sequence for training parameter set
+* Var_t  : Variance of time sequence for training parameter set
+* U_r    : Global basis
+* x_train: Training parameter set
+---------------------------------------------------------------------------
+Output:
+* Mu_full   : Prediction mean of the full order solution
+* Var_full  : Prediction variance of the full order solution
+* X_full    : True full order solution
+%}
+
+%% Prediction of FOM for an untried parameter 
 
 model = Interpolation_model1(x_train,Mu_t,Var_t);
 

@@ -1,6 +1,21 @@
 function [Var Delta] = Adaptive_GPR_ROM1(x_train,x_test,Mu_t,Var_t)
 
-% Compute the bias and variance (all latent states shate the same hyper-parameter)
+%% Compute the bias and variance (all latent states shate the same hyper-parameter)
+%{
+Created by: Kai Cheng (kai.cheng@tum.de)
+Based on: "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER1
+MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing
+---------------------------------------------------------------------------
+Input:
+* x_train: Training parameter set
+* x_test : Testing  parameter set
+* Mu_t   : Mean of time sequence for training parameter set
+* Var_t  : Variance of time sequence for training parameter set
+---------------------------------------------------------------------------
+Output:
+* Var    : Prediction variance
+* Delta  : Prediction bias
+%}
 
 %% training sample set
 

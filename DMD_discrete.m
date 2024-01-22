@@ -1,6 +1,5 @@
 function [Phi,W_r,lambda,b,Xdmd,Atilde,U_r,S_r,V_r,Xdmd_r,Sigma] = DMD_discrete(X1,X2,threshold)
-% function [Phi,omega,lambda,b,Xdmd] = DMD(X1,X2,r,dt)
-% Computes the Dynamic Mode Decomposition of X1, X2
+%% Computes the Dynamic Mode Decomposition of X1, X2
 %
 % INPUTS: 
 % X1 = X, data matrix

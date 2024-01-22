@@ -1,4 +1,4 @@
-function [weight var] = Kriging_weight(x_pre,model)
+function [weight, var] = Kriging_weight(x_pre,model)
  
 % compute the interpolation weight and variance
   

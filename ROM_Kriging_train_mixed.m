@@ -1,6 +1,6 @@
 function ROM_Kriging = ROM_Kriging_train_mixed(X,threshold,hyperpar)
 
-% Training reduced order model with Kriging --- mixed kernel
+% Training reduced order model with Kriging with mixed kernel
 
 [U, S, V] = svd(X, 'econ');
 
