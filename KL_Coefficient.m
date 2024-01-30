@@ -1,6 +1,6 @@
 function Y = KL_Coefficient(u,meant,sigmat,L)
 
-% K-L expansion of Stochastic Process 
+% Expansion optimal linear estimation (EOLE) of Stochastic Process 
 
 % meant = 1 ; sigmat = 0.2;  L = 0.5;
 
