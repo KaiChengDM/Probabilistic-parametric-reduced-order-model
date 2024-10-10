@@ -73,8 +73,8 @@ for i = 1:r
 %  ROM_Kriging.basis = U_r;  
 %  ROM_Kriging.Yr = u_output;  % multiple output
 % 
-% %  ROM_Kriging.mean_input = mean_input;
-% %  ROM_Kriging.std_input  = std_input;
+%  ROM_Kriging.mean_input = mean_input;
+%  ROM_Kriging.std_input  = std_input;
 %  ROM_Kriging.lb_input   = lb_input;
 %  ROM_Kriging.ub_input   = ub_input;
 %  ROM_Kriging.dim = n; 

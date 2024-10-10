@@ -1,4 +1,4 @@
-function [X1 X2 X_test] = Redi_snapshots(parameter,m)
+function [X1, X2, X_test] = Redi_snapshots(parameter,m)
 
 % Generate snapshot matrix of reaction-diffusion equation
 
