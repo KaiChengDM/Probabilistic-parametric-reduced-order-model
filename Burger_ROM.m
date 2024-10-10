@@ -137,7 +137,7 @@ for i = 1:mm
     error3(i) = norm(Mu2(:,i) - X_test(:,i))./norm(X_test(:,i));
 end
 
-Error4 = norm(Mu2 - X_test,'fro')/norm(X_test,'fro')
+Error3 = norm(Mu2 - X_test,'fro')/norm(X_test,'fro')
 
 %% comparison of different methods
 
@@ -170,7 +170,7 @@ view(75,50);
 title('True solution');
 
 subplot(2,2,2);
-X_full = [Xdmd  Xdmd_predictor];
+X_full = [Xdmd  Xdmd_pred];
 mesh(x,t1,real(X_full'));
 xlabel('s');
 ylabel('t');
@@ -179,7 +179,7 @@ title('Linear Kernel (DMD)');
 view(75,50); 
 
 subplot(2,2,3);
-X_full = [X1(:,1) recover_Mean1 Mean1];
+X_full = [X1(:,1) recon_Mu Mu];
 mesh(x,t1,X_full');
 xlabel('s');
 ylabel('t');
@@ -188,7 +188,7 @@ title('Mixed kernel');
 view(75,50); 
 
 subplot(2,2,4);
-X_full = [X1(:,1) recover_Mean2 Mean2];
+X_full = [X1(:,1) recon_Mu1 Mu1];
 mesh(x,t1,X_full');
 xlabel('s');
 ylabel('t');

@@ -13,7 +13,7 @@ m = 100; threshold = 0.99999;  % snapshots number and SVD truncation threshold
 
 %% Initial model
 
-N1 = 300;  pp = sobolset(dim,'Skip',10); u1 = net(pp,N1); % candidate sample by sobol sequence
+N1 = 3;  pp = sobolset(dim,'Skip',10); u1 = net(pp,N1); % candidate sample by sobol sequence
 
 for i = 1:dim
     p_pool(:,i)= u1(:,i)*(ub(i)-lb(i))+lb(i);   % candidate sample pool
