@@ -1,4 +1,4 @@
-Matlab (R2023b) code of manuscript "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
+Matlab (R2023b) package of manuscript "ADAPTIVE DATA-DRIVEN PROBABILISTIC REDUCED-ORDER
 MODELS FOR PARAMETERIZED DYNAMICAL SYSTEMS", submitted to SIAM journal on Scientific Computing.
 
 
